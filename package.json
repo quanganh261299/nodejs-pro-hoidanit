@@ -25,6 +25,9 @@
   },
   "homepage": "https://github.com/quanganh261299/nodejs-pro-hoidanit#readme",
   "dependencies": {
-    "express": "5.0.1"
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.10.7",
+    "express": "5.0.1",
+    "typescript": "^5.7.3"
   }
 }
