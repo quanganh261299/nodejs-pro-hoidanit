@@ -20,9 +20,6 @@ app.use(express.static('public'))
 // config routes
 webRoutes(app);
 
-// Get database connection
-getConnection();
-
 app.listen(PORT, () => {
     console.log(`My app is running on port: ${PORT}`)
     console.log(__dirname + '/views/')
