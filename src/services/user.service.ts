@@ -1,10 +1,20 @@
 import getConnection from "../config/database"
 
-const handleCreateUser = (fullName: string, email: string, address: string) => {
-    // insert into database
+const handleCreateUser = async (fullName: string, email: string, address: string) => {
+    const connection = await getConnection();
 
-    // return result
-    console.log(">> insert a new user")
+    // execute will internally call prepare and query
+    try {
+        const sql = 'INSERT INTO `users`(`name`, `email`, `address`) VALUES (?, ?, ?)';
+        const values = [fullName, email, address];
+
+        const [result, fields] = await connection.execute(sql, values);
+        return result;
+    }
+    catch (err) {
+        console.log(err);
+        return [];
+    }
 }
 
 const getAllUsers = async () => {
@@ -19,7 +29,6 @@ const getAllUsers = async () => {
         console.log(err);
         return [];
     }
-    return "hoidanit"
 }
 
 export { handleCreateUser, getAllUsers }
