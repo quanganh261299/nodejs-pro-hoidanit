@@ -2,11 +2,7 @@ import { Request, Response } from "express"
 import { getAllRoles, getAllUsers, handleCreateUser, handleDeleteUser, handleGetUserById, updateUserById } from "services/user.service"
 
 const getHomePage = async (req: Request, res: Response) => {
-    // Get users
-    const users = await getAllUsers();
-    return res.render("home", {
-        users
-    })
+    return res.render("client/home/show.ejs")
 }
 
 const getCreateUserPage = async (req: Request, res: Response) => {
