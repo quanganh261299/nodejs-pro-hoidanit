@@ -24,7 +24,23 @@
                                 <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
                                 <li class="breadcrumb-item active">Products</li>
                             </ol>
-                            <div>table product</div>
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <h5>Table Product:</h5>
+                                <div>
+                                    <a href="/admin/create-product" class="btn btn-warning">Create product</a>
+                                </div>
+                            </div>
+                            <hr />
+                            <table class="table table-hover table-bordered">
+                                <thead>
+                                    <th>Id</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Address</th>
+                                    <th>Action</th>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
                         </div>
                     </main>
                     <%- include('../layout/footer'); -%>
