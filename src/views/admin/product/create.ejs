@@ -41,71 +41,90 @@
 
                         <div class="row gx-0">
                             <div class="col-6 mx-auto">
-                                <h5 style="padding: 10px 0;">Create a product:</h5>
-                                <form action="/admin/create-product" method="post" enctype="multipart/form-data">
-                                    <div class="row">
-                                        <div class="mb-3 col-6">
-                                            <label for="name" class="form-label">Name</label>
-                                            <input name="name" type="text" class="form-control" id="name">
-                                        </div>
-                                        <div class="mb-3 col-6">
-                                            <label for="price" class="form-label">Price</label>
-                                            <input name="price" type="text" class="form-control" id="price">
-                                        </div>
+                                <% errors.forEach( function (error) { %>
+                                    <div class="alert alert-danger mb-3">
+                                        <%= error %>
                                     </div>
-                                    <div class="mb-3">
-                                        <label for="detailDesc" class="form-label">Description</label>
-                                        <textarea name="detailDesc" class="form-control" id="detailDesc"
-                                            rows="2"></textarea>
-                                    </div>
-                                    <div class="row">
-                                        <div class="mb-3 col-6">
-                                            <label class="form-label" for="shortDesc">Short Description</label>
-                                            <input type="text" class="form-control" id="shortDesc" name="shortDesc">
-                                        </div>
-                                        <div class="mb-3 col-6">
-                                            <label class="form-label" for="quantity">Quantity</label>
-                                            <input type="number" class="form-control" id="quantity" name="quantity">
-                                        </div>
-                                    </div>
+                                    <% }) %>
+                                        <h5 style="padding: 10px 0;">Create a product:</h5>
+                                        <form action="/admin/create-product" method="post"
+                                            enctype="multipart/form-data">
+                                            <div class="row">
+                                                <div class="mb-3 col-6">
+                                                    <label for="name" class="form-label">Name</label>
+                                                    <input name="name" type="text" class="form-control" id="name"
+                                                        value="<%= oldData.name %>">
+                                                </div>
+                                                <div class="mb-3 col-6">
+                                                    <label for="price" class="form-label">Price</label>
+                                                    <input name="price" type="text" class="form-control" id="price"
+                                                        value="<%= oldData.price %>">
+                                                </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="detailDesc" class="form-label">Description</label>
+                                                <textarea name="detailDesc" class="form-control" id="detailDesc"
+                                                    rows="2"><%= oldData.detailDesc %></textarea>
+                                            </div>
+                                            <div class="row">
+                                                <div class="mb-3 col-6">
+                                                    <label class="form-label" for="shortDesc">Short Description</label>
+                                                    <input type="text" class="form-control" id="shortDesc"
+                                                        name="shortDesc" value="<%= oldData.shortDesc %>">
+                                                </div>
+                                                <div class="mb-3 col-6">
+                                                    <label class="form-label" for="quantity">Quantity</label>
+                                                    <input type="number" value="<%= oldData.quantity %>"
+                                                        class="form-control" id="quantity" name="quantity">
+                                                </div>
+                                            </div>
 
-                                    <div class="row">
-                                        <div class="mb-3 col-6">
-                                            <label class="form-label">Factory</label>
-                                            <select name="factory" class="form-select">
-                                                <option value="APPLE">Apple (MacBook)</option>
-                                                <option value="ASUS">Asus</option>
-                                                <option value="LENOVO">Lenovo</option>
-                                                <option value="DELL">Dell</option>
-                                                <option value="LG">LG</option>
-                                                <option value="ACER">Acer</option>
-                                            </select>
-                                        </div>
-                                        <div class="mb-3 col-6">
-                                            <label class="form-label">Target</label>
-                                            <select name="target" class="form-select">
-                                                <option value="GAMING">Gaming</option>
-                                                <option value="SINHVIEN-VANPHONG">Sinh viên - Văn phòng
-                                                </option>
-                                                <option value="THIET-KE-DO-HOA">Thiết kế đồ họa</option>
-                                                <option value="MONG-NHE">Mỏng nhẹ</option>
-                                                <option value="DOANH-NHAN">Doanh nhân</option>
-                                            </select>
-                                        </div>
-                                    </div>
+                                            <div class="row">
+                                                <div class="mb-3 col-6">
+                                                    <label class="form-label">Factory</label>
+                                                    <select name="factory" class="form-select">
+                                                        <% [ { value: "APPLE" , name: "Apple (MacBook)" }, {
+                                                            value: "ASUS" , name: "Asus" }, { value: "LENOVO" ,
+                                                            name: "Lenovo" }, { value: "DELL" , name: "Dell" }, {
+                                                            value: "LG" , name: "LG" }, { value: "ACER" , name: "Acer" }
+                                                            ].forEach(item=> { %>
+                                                            <option value="<%= item.value %>"
+                                                                <%=oldData?.factory===item.id ? "selected" : "" %>>
+                                                                <%- item.name %>
+                                                            </option>
+                                                            <% }) %>
+                                                    </select>
+                                                </div>
+                                                <div class="mb-3 col-6">
+                                                    <label class="form-label">Target</label>
+                                                    <select name="target" class="form-select">
+                                                        <% [ { value: "GAMING" , label: "Gaming" }, {
+                                                            value: "SINHVIEN-VANPHONG" , label: "Sinh viên - Văn phòng"
+                                                            }, { value: "THIET-KE-DO-HOA" , label: "Thiết kế đồ họa" },
+                                                            { value: "MONG-NHE" , label: "Mỏng nhẹ" }, {
+                                                            value: "DOANH-NHAN" , label: "Doanh nhân" } ].forEach(item=>
+                                                            { %>
+                                                            <option value="<%= item.value %>"
+                                                                <%=oldData?.target===item.value ? "selected" : "" %>>
+                                                                <%- item.label %>
+                                                            </option>
+                                                            <% }) %>
+                                                    </select>
+                                                </div>
+                                            </div>
 
 
-                                    <div class="mb-3">
-                                        <label for="avatarFile" class="form-label">Image</label>
-                                        <input name="image" class="form-control" type="file" id="avatarFile"
-                                            accept=".png, .jpg, .jpeg">
-                                    </div>
-                                    <img style="max-height: 250px; display: none;" alt="avatar preview"
-                                        id="avatarPreview" />
-                                    <div class="mb-3 pt-3">
-                                        <button type="submit" class="btn btn-warning">Submit</button>
-                                    </div>
-                                </form>
+                                            <div class="mb-3">
+                                                <label for="avatarFile" class="form-label">Image</label>
+                                                <input name="image" class="form-control" type="file" id="avatarFile"
+                                                    accept=".png, .jpg, .jpeg">
+                                            </div>
+                                            <img style="max-height: 250px; display: none;" alt="avatar preview"
+                                                id="avatarPreview" />
+                                            <div class="mb-3 pt-3">
+                                                <button type="submit" class="btn btn-warning">Submit</button>
+                                            </div>
+                                        </form>
                             </div>
                         </div>
                     </main>
