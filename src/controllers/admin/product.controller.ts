@@ -1,6 +1,6 @@
 import { factories, targets } from "config/constant";
 import { Request, Response } from "express";
-import { createProduct, getProductById, handleDeleteProduct, updateProductById } from "services/product.service";
+import { createProduct, getProductById, handleDeleteProduct, updateProductById } from "services/admin/product.service";
 import { ProductSchema, TProductSchema } from "src/validation/product.schema";
 
 const getAdminCreateProductPage = async (req: Request, res: Response) => {
